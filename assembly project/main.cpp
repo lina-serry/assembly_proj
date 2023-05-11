@@ -55,9 +55,9 @@ int main()
     }
 
 
-//    cout<<"Starting Address: ";
-//    cin>> start;
-    start=2000;
+    cout<<"Starting Address: ";
+    cin>> start;
+  //  start=2000;
    
 
     arrange_data(data);
