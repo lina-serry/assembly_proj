@@ -10,6 +10,7 @@
 #include <vector>
 #include <map>
 #include "opcodes.hpp"
+
 using namespace std;
 
 map<int, string> instruction_mem;
@@ -40,7 +41,7 @@ int main()
 
         cout<<"Enter data file name: ";
         getline(cin, input_data);
-
+  
     ifstream data_file;
     data_file.open(input_data);
     vector <string> data;
@@ -68,9 +69,11 @@ void execute (int start, int pc, vector<string> instructions, int index)
 {
     for(int i=index;i<instruction_mem.size();i++)
     {
+        reg_f[1]=pc;
         cout<<"\tpc= " <<pc<<endl;
         decode(start,instruction_mem[pc],instructions,pc);
         pc += 4;
+        
     }
 }
 
@@ -85,6 +88,8 @@ void decode (int start, string instruction,vector<string> instructions, int pc)
 
     if(opcode=="ADD")
       add(instruction);
+    if(opcode=="MUL")
+      mul(instruction);
     if(opcode=="SUB")
        sub(instruction);
     if(opcode=="SLT")

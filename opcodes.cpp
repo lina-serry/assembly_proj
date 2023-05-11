@@ -62,16 +62,6 @@ void binary(int n)
 }
 
 
-void display_registers() {
-  cout << "Register values:" << endl<<"   D   B    H \n";
-  for (int i = 0; i < 32; i++)
-  {
-      cout << "x"<<i<<":"<<reg_f[i]<<"  ";
-      binary(reg_f[i]);cout<<" \t";
-      cout<<hex(reg_f[i])<<endl;
-  }
-}
-
 
 string hex(int n)
 {
@@ -100,6 +90,17 @@ string hex(int n)
       j--;
     }
     return s;
+}
+
+
+void display_registers() {
+  cout << "Register values:" << endl<<"   D   B    H \n";
+  for (int i = 0; i < 32; i++)
+  {
+      cout << "x"<<i<<":"<<reg_f[i]<<"  ";
+      binary(reg_f[i]);cout<<" \t";
+      cout<<hex(reg_f[i])<<endl;
+  }
 }
 
 
@@ -209,6 +210,27 @@ void add(string instruction)
     
     display_registers();
 }
+
+void mul(string instruction)
+{
+    vector<string> regs= split(instruction);
+    
+    string rd=regs[1];
+    string rs1=regs[2];
+    string rs2=regs[3];
+    
+    int d=reg_num(rd);
+    int s1=reg_num(rs1);
+    int s2=reg_num(rs2);
+    
+    if(d==0)
+        cout<<"Error: value of x0 is constant \n";
+    else
+    reg_f[d]=reg_f[s1]*reg_f[s2];
+    
+    display_registers();
+}
+
 
 
 void addi(string instruction)

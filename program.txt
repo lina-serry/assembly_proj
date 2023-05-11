@@ -1,15 +1,8 @@
-ADDI x20,x20,4
-ADDI x21,x21,2
-ADDI x22,x22,2
-ADDI x23,x23,3
-JAL x1,Else
-ADD x19,x20,x21
-BEQ x0,x0,Exit
-Else:
-SUB x19,x20,x21
-Exit:
-FENCE
-
-
-
-
+ADDI t0,zero,6  
+ADDI t1,zero,4  
+ADDI t2,zero,4   
+ADDI t3,zero,1   
+ADD a0,t0,t1
+ADD a1,t2,t3
+SUB a0,a0,a1
+JALR zero,

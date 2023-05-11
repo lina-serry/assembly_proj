@@ -15,7 +15,7 @@
 #include <string>
 
 using namespace std;
-
+extern int reg_f[32];
 
 void arrange_data(vector<string> data);
 vector<string> split (string instruction);
@@ -49,6 +49,7 @@ void orr(string instruction);  //because 'or' is a key word
 void srli(string instruction);
 void srai(string instruction);
 void lw(string instruction);
+void mul(string instruction);
 void lbu(string instruction);
 void lb(string instruction);
 void lhu(string instruction);
