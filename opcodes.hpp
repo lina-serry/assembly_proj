@@ -56,6 +56,13 @@ void lh(string instruction);
 void sb(string instruction);
 void sw(string instruction);
 void sh(string instruction);
+void srl(string instruction);
+void sra(string instruction);
+void auipc(string instruction);
+int bgeu(string instruction,vector<string> instructions, int start, int pc);
+int bltu(string instruction,vector<string> instructions, int start, int pc);
+int jal(string instruction,  vector<string> instructions, int start, int pc);
+int jalr(string instruction,  vector<string> instructions, int start, int pc);
 
 #endif /* opcodes_hpp */
 

@@ -25,9 +25,8 @@ int main()
     string input_program, input_data;
     int start;
 
-//    cout<<"Enter instruction file name: ";
-//    getline(cin, input);
-    input_program= "program.txt";
+    cout<<"Enter instruction file name: ";
+    getline(cin, input_program);
 
     ifstream prog_file;
     prog_file.open(input_program);
@@ -39,10 +38,8 @@ int main()
         instructions.push_back(line);
     }
 
-    //    cout<<"Enter data file name: ";
-    //    getline(cin, input);
-
-    input_data= "data.txt";
+        cout<<"Enter data file name: ";
+        getline(cin, input_data);
 
     ifstream data_file;
     data_file.open(input_data);
@@ -54,11 +51,8 @@ int main()
         data.push_back(l);
     }
 
-
     cout<<"Starting Address: ";
     cin>> start;
-  //  start=2000;
-   
 
     arrange_data(data);
     arrange_inst(instructions, start);
@@ -157,6 +151,28 @@ void decode (int start, string instruction,vector<string> instructions, int pc)
         sh(instruction);
     if(opcode=="LUI")
         lui(instruction);
+    if(opcode=="JAL")
+    { int p= jal(instruction, instructions, start, pc);
+           execute(start, p, instructions, (p-start)/4);
+    }
+    if(opcode=="JALR")
+    { int p= jalr(instruction, instructions, start, pc);
+           execute(start, p, instructions, (p-start)/4);
+    }
+    if(opcode=="BLTU")
+    { int p= bltu(instruction, instructions, start, pc);
+        execute(start, p, instructions, (p-start)/4);
+    }
+    if(opcode=="BGEU")
+    { int p= bgeu(instruction, instructions, start, pc);
+        execute(start, p, instructions, (p-start)/4);
+    }
+    if(opcode=="SRA")
+        sra(instruction);
+    if(opcode=="SLA")
+        srl(instruction);
+    if(opcode=="AUIPC")
+        auipc(instruction);
     
     if((opcode=="ECALL")||(opcode=="EBREAK")||(opcode=="FENCE"))
         terminate();
